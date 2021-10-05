@@ -7,6 +7,7 @@ from auth import requires_auth
 from models import *
 
 ITEMS_PER_PAGE = 10
+app = Flask(__name__)
 
 def paginate(request, selection):
   page = request.args.get('page', 1, type=int)
