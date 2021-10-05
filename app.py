@@ -1,6 +1,7 @@
 import os
 from typing import final
 from flask import Flask, json, request, abort, jsonify
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from auth import requires_auth
@@ -20,6 +21,7 @@ def paginate(request, selection):
 def create_app(test_config=None):
   # create and configure the app
   app = Flask(__name__)
+  migrate = Migrate(app, db) 
   CORS(app)
 
   @app.route('/airplanes', methods=["GET"])
