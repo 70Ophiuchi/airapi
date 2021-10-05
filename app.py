@@ -35,7 +35,7 @@ def create_app(test_config=None):
       'success': True
     })
 
-  @app.route('/airplanes/<int:id>', methods=["GET", "DELETE"])
+  @app.route('/airplanes/<int:id>', methods=["GET"])
   def get_specific_airplane(id):
 
     airplane = Airplanes.query.filter_by(id=id).one_or_none()
@@ -198,35 +198,35 @@ def create_app(test_config=None):
         abort(401)
 
   @app.errorhandler(404)
-  def not_found():
+  def not_found(error):
       return jsonify({'success': False,
                       'message': 'Resource was not found on the server'
                       , 'error_code': 404})
 
   @app.errorhandler(422)
-  def unprocessable():
+  def unprocessable(error):
       return jsonify({'success': False,
                       'message': 'Request could not be processed',
                       'error_code': 422})
 
   @app.errorhandler(400)
-  def bad_request():
+  def bad_request(error):
       return jsonify({'success': False, 'message': 'Bad request',
                       'error_code': 400})
 
   @app.errorhandler(405)
-  def method_not_allowed():
+  def method_not_allowed(error):
       return jsonify({'success': False,
                       'message': 'Method is not allowed on requested resource'
                       , 'error_code': 405})
 
   @app.errorhandler(408)
-  def request_timeout():
+  def request_timeout(error):
       return jsonify({'success': False, 'message': 'Request timed out'
                       , 'error_code': 408})
 
   @app.errorhandler(500)
-  def server_error():
+  def server_error(error):
       return jsonify({'success': False,
                       'message': 'Internal Server Error',
                       'error_code': 500})
