@@ -133,7 +133,7 @@ def create_app(test_config=None):
 
   @app.route('/airports/<int:id>', methods=["DELETE"])
   @requires_auth('delete:airport')
-  def delete_airplane(id):
+  def delete_airport(id):
     airport = Airports(id=id)
     error = False
     try:
