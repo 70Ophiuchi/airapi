@@ -21,7 +21,8 @@ def paginate(request, selection):
 def create_app(test_config=None):
   # create and configure the app
   app = Flask(__name__)
-  migrate = Migrate(app, db) 
+  migrate = Migrate(app, db)
+  db.init_app(app)
   CORS(app)
 
   @app.route('/airplanes', methods=["GET"])
