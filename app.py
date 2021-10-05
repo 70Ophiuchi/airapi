@@ -8,6 +8,7 @@ from auth import requires_auth
 from models import *
 
 ITEMS_PER_PAGE = 10
+app = Flask(__name__)
 
 def paginate(request, selection):
   page = request.args.get('page', 1, type=int)
@@ -20,7 +21,6 @@ def paginate(request, selection):
 
 def create_app(test_config=None):
   # create and configure the app
-  app = Flask(__name__)
   CORS(app)
 
   @app.route('/airplanes', methods=["GET"])
