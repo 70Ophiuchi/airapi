@@ -4,7 +4,7 @@
 
 * https://airportaircraftapi.herokuapp.com/airplanes
 
-# How to run locally? tc
+# How to run locally?
 
 * Set the required variables and environment variables in models.py, setup.sh and test_app.py
 * One line script:
